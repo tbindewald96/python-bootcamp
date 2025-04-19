@@ -1,36 +1,41 @@
 import random
 
-# Step 1:
+# chose word from wordlist and determine length of word
 
-word_list = ["aardvark", "baboon", "camel"]
+list = ["aardvark", "baboon", "camel"]
 
-word = random.choice(word_list)
+word = random.choice(list)
 
-placeholder = ""
+# turn word into list 
 
-print(word)
+word_list = []
 
 for letter in word:
-    placeholder += "_"
+    word_list.append(letter)
 
-print(placeholder)
+print(word_list)
 
-# Step 2: 
+# Create a placeholder 
 
-guess = input("Guess a letter:\n").lower()
+solution_list = []
 
-# Step 3: 
+for letter in word_list:
+    solution_list.append("_")
 
-count = -1
-for letter in word:
-    count += 1
-    if guess == letter:
-        placeholder_list = list(placeholder)
-        placeholder_list[count] = guess
-        placeholder = ''.join(placeholder_list)
+print(solution_list)
 
-print(placeholder)
+# Game runs until complete word is guessed
 
+while solution_list != word_list:
+    guess = input("Guess a letter:\n").lower()
+
+# If correct letter is guessed, swap correct placeholders with guessed letters
+    for letter in word_list:
+        location = word_list.index(letter)
+        print(location)
+
+
+#solution = ''.join(solution_list)
 
 
 
