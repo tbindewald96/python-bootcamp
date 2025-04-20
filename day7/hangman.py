@@ -32,12 +32,12 @@ while solution_list != word_list:
     counter = 0
 # If correct letter is guessed, swap correct placeholders with guessed letters
     for letter in word_list:
-        print(counter)
-        print(letter)
         if guess == word_list[counter]:
             solution_list[counter] = guess
         counter += 1
     print(solution_list)
+
+# Once complete word was guessed, join list and print solution
     
 solution = ''.join(solution_list)
 
