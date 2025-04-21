@@ -1,5 +1,57 @@
 import random
 
+hangmanpics = [ 
+" ", '''                           
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
 # chose word from wordlist and determine length of word
 
 list = ["aardvark", "baboon", "camel"]
@@ -24,10 +76,18 @@ for letter in word_list:
 
 print(solution_list)
 
+# Create a count with initial lives and a hangman count
+
+lives = 0
+
+# Create a list for wrong guesses
+
+guesses = []
+
 # Game runs until complete word is guessed
 
-
-while solution_list != word_list:
+while not (solution_list == word_list or lives == 7):
+    print(hangmanpics[lives])
     guess = input("Guess a letter:\n").lower()
     counter = 0
 # If correct letter is guessed, swap correct placeholders with guessed letters
@@ -35,15 +95,24 @@ while solution_list != word_list:
         if guess == word_list[counter]:
             solution_list[counter] = guess
         counter += 1
-    print(solution_list)
+# If wrong letter is guessed remove one live from counter and print respective hangman step
+    if guess not in word_list and guess not in guesses:
+        guesses.append(guess)
+        lives += 1
 
-# Once complete word was guessed, join list and print solution
-    
+# Print current solution list
+    print(solution_list)
+    print(guesses)
+    print(lives)
+
+# Print either solution or last hangman
+
 solution = ''.join(solution_list)
 
-print(solution)
-
-
-
-
+if solution_list == word_list:
+    print(solution)
+    print("You won!")
+elif lives == 7:
+    print(hangmanpics[lives])
+    print("You lost!")
 
