@@ -17,16 +17,12 @@ word_list = []
 for letter in word:
     word_list.append(letter)
 
-print(word_list)
-
 # Create a placeholder 
 
 solution_list = []
 
 for letter in word_list:
     solution_list.append("_")
-
-print(solution_list)
 
 # Create a count with initial lives
 
@@ -39,8 +35,14 @@ guesses = []
 # Show Hangman Logo
 
 print(logo)
-# Game runs until complete word is guessed
 
+# Show length of word
+
+solution = ''.join(solution_list)
+print(f"The word we are lookin for is {solution}")
+solution_list = list(solution)
+
+# Game runs until complete word is guessed
 while not (solution_list == word_list or lives == 0):
     print(stages[lives])
     guess = input("Guess a letter:\n").lower()
@@ -54,11 +56,14 @@ while not (solution_list == word_list or lives == 0):
     if guess not in word_list and guess not in guesses:
         guesses.append(guess)
         lives -= 1
+        print(f"You guessed {guess}, that's not in the word. You lose a live.")
+    if guess in guesses:
+        print(f"You already guessed {guess}")
 
 # Print current solution list
-    print(solution_list)
-    print(guesses)
-    print(lives)
+    solution = ''.join(solution_list)
+    print(f"The word we are looking for is {solution}")
+    solution_list = list(solution)
 
 # Print either solution or last hangman
 
