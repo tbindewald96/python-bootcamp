@@ -2,9 +2,7 @@
 
 import random
 from hangman_words import words
-from hangman_art import stages
-from hangman_art import logo
-
+from hangman_art import stages, logo
 
 # Chose word from wordlist and determine length of word
 
@@ -53,12 +51,12 @@ while not (solution_list == word_list or lives == 0):
             solution_list[counter] = guess
         counter += 1
 # If wrong letter is guessed remove one live from counter and print respective hangman step
+    if guess in guesses:
+        print(f"You already guessed {guess}")
     if guess not in word_list and guess not in guesses:
         guesses.append(guess)
         lives -= 1
         print(f"You guessed {guess}, that's not in the word. You lose a live.")
-    if guess in guesses:
-        print(f"You already guessed {guess}")
 
 # Print current solution list
     solution = ''.join(solution_list)
