@@ -1,62 +1,14 @@
+# Import necessary modules and lists
+
 import random
+from hangman_words import words
+from hangman_art import stages
+from hangman_art import logo
 
-hangmanpics = [ 
-" ", '''                           
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''']
 
-# chose word from wordlist and determine length of word
+# Chose word from wordlist and determine length of word
 
-list = ["aardvark", "baboon", "camel"]
-
-word = random.choice(list)
+word = random.choice(words)
 
 # turn word into list 
 
@@ -76,18 +28,21 @@ for letter in word_list:
 
 print(solution_list)
 
-# Create a count with initial lives and a hangman count
+# Create a count with initial lives
 
-lives = 0
+lives = 7
 
 # Create a list for wrong guesses
 
 guesses = []
 
+# Show Hangman Logo
+
+print(logo)
 # Game runs until complete word is guessed
 
-while not (solution_list == word_list or lives == 7):
-    print(hangmanpics[lives])
+while not (solution_list == word_list or lives == 0):
+    print(stages[lives])
     guess = input("Guess a letter:\n").lower()
     counter = 0
 # If correct letter is guessed, swap correct placeholders with guessed letters
@@ -98,7 +53,7 @@ while not (solution_list == word_list or lives == 7):
 # If wrong letter is guessed remove one live from counter and print respective hangman step
     if guess not in word_list and guess not in guesses:
         guesses.append(guess)
-        lives += 1
+        lives -= 1
 
 # Print current solution list
     print(solution_list)
@@ -112,7 +67,7 @@ solution = ''.join(solution_list)
 if solution_list == word_list:
     print(solution)
     print("You won!")
-elif lives == 7:
-    print(hangmanpics[lives])
+elif lives == 0:
+    print(stages[lives])
     print("You lost!")
 
