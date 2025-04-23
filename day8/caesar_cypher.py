@@ -17,9 +17,12 @@ def decrypt(original_text, shift_amount):
     decrypted_text = ""
     for letter in original_text:
         location = alphabet.index(letter) - shift_amount
-        if 0 > location:
+        if 0 > location and location > -len(alphabet):
             location = len(alphabet) + location
         decrypted_text += alphabet[location]
+        if -len(alphabet) > location:
+            location %= len(alphabet)
+
 
     print(f"Here is the decoded result: {decrypted_text}")
 
