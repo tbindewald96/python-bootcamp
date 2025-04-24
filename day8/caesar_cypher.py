@@ -15,4 +15,5 @@ def caesar(encode_or_decode, original_text, shift_amount):
         text += alphabet[location]
     print(f"Here is the {encode_or_decode} result: {text}")
 
+
 caesar(encode_or_decode, text, shift)
