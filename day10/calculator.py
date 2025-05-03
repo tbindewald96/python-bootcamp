@@ -41,3 +41,4 @@ while calculation == True:
         n1 = float(input("Whats the first number?\n"))
         operator = input("What is the operation?\n")
         n2 = float(input("What is the second number?\n"))
+        
